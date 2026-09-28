@@ -1,114 +1,332 @@
-const slides = Array.from(document.querySelectorAll('.slide'));
-const dots = Array.from(document.querySelectorAll('.dot'));
-const prevBtn = document.querySelector('.slider-btn.prev');
-const nextBtn = document.querySelector('.slider-btn.next');
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پیکسیا | لوازم تحریر و سرگرمی</title>
+    <meta
+      name="description"
+      content="پیکسیا - فروشگاه لوازم تحریر، سرگرمی و خلاقیت با طراحی فانتزی و مدرن"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>ارسال سریع و رایگان</span>
+        <span>تخفیف‌های ویژه برای اعضای جدید</span>
+        <span>خرید امن و راحت</span>
+      </div>
+    </div>
 
-let current = 0;
+    <header class="header">
+      <div class="container header-inner">
+        <div class="brand-box">
+          <div class="brand-mark">P</div>
+          <div class="brand-text">
+            <span class="brand-name">پیکسیا</span>
+          </div>
+        </div>
 
-function updateSlider(index) {
-  current = (index + slides.length) % slides.length;
+        <label class="searchbox" aria-label="جستجو">
+          <span class="search-icon">⌕</span>
+          <input type="text" placeholder="جستجو در لوازم تحریر، سرگرمی و خلاقیت" />
+        </label>
 
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === current);
-  });
+        <div class="header-actions">
+          <button class="login-btn">ورود | ثبت نام</button>
+          <button class="cart-btn" aria-label="سبد خرید">
+            🛒
+            <span class="cart-count">۲</span>
+          </button>
+        </div>
+      </div>
+    </header>
 
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === current);
-  });
-}
+    <nav class="main-nav">
+      <div class="container nav-inner">
+        <div class="nav-item loc-item">📍 تهران</div>
+        <div class="nav-item"><strong>دسته‌بندی‌ها</strong> ▾</div>
+        <div class="nav-item">پیشنهادهای ویژه</div>
+        <div class="nav-item">تخفیف روز</div>
+        <div class="nav-item">شگفت‌انگیزها</div>
+        <div class="nav-item">برندهای خاص</div>
+      </div>
+    </nav>
 
-prevBtn.addEventListener('click', () => updateSlider(current - 1));
-nextBtn.addEventListener('click', () => updateSlider(current + 1));
+    <main class="container page-content">
+      <section class="hero-section">
+        <div class="hero-slider">
+          <div class="slide active">
+            <div class="slide-copy">
+              <span class="badge">فروش ویژه</span>
+              <h1>خلاقیت بی‌حد</h1>
+              <p>لوازم تحریر، سرگرمی و خلاقیتی با طراحی مدرن و فانتزی برای کودکان و بزرگسالان</p>
+              <button class="btn-primary">خرید از پیکسیا</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80" alt="لوازم خلاقیت" />
+          </div>
 
-dots.forEach((dot, i) => {
-  dot.addEventListener('click', () => updateSlider(i));
-});
+          <div class="slide">
+            <div class="slide-copy">
+              <span class="badge badge-blue">محصولات جدید</span>
+              <h1>رنگ‌ها و ترکیبات</h1>
+              <p>مجموعه‌ای از رنگ‌های درخشان و ابزارهای خلاقی برای هنرپردازان جوان</p>
+              <button class="btn-primary">مشاهده پیشنهادها</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="رنگ‌ها" />
+          </div>
 
-setInterval(() => updateSlider(current + 1), 4500);
+          <div class="slide">
+            <div class="slide-copy">
+              <span class="badge badge-pink">هنر و خلاقیت</span>
+              <h1>تخیل را شکل بده</h1>
+              <p>همه چیزی که برای دنیای خلاقیت و سرگرمی نیاز داری، در یک جا</p>
+              <button class="btn-primary">دریافت تخفیف</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="خلاقیت" />
+          </div>
 
-const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
-addToCartButtons.forEach((btn) => {
-  btn.addEventListener('click', function () {
-    const originalText = this.textContent;
-    this.textContent = '✓ افزوده شد';
-    this.style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+          <button class="slider-btn prev" aria-label="قبلی">›</button>
+          <button class="slider-btn next" aria-label="بعدی">‹</button>
 
-    setTimeout(() => {
-      this.textContent = originalText;
-      this.style.background = 'linear-gradient(135deg, var(--pink-400), var(--blue-400))';
-    }, 1800);
-  });
-});
+          <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
 
-const heroButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
-heroButtons.forEach((btn) => {
-  btn.addEventListener('mouseenter', () => {
-    btn.style.transform = 'translateY(-3px) scale(1.02)';
-  });
+        <aside class="promo-stack">
+          <div class="mini-card mini-card-pink">
+            <span class="mini-tag">پیشنهاد ویژه</span>
+            <h3>تا ۴۰٪ تخفیف</h3>
+            <p>لوازم تحریر و رنگ‌ها</p>
+          </div>
+          <div class="mini-card mini-card-blue">
+            <span class="mini-tag">ارسال سریع</span>
+            <h3>تحویل در ۲۴ ساعت</h3>
+            <p>برای سفارش‌های بالای ۵۰۰ هزار</p>
+          </div>
+        </aside>
+      </section>
 
-  btn.addEventListener('mouseleave', () => {
-    btn.style.transform = '';
-  });
-});
+      <section class="category-strip">
+        <article class="category-card">
+          <div class="icon">✏️</div>
+          <span>قلم و مدادها</span>
+        </article>
+        <article class="category-card">
+          <div class="icon">🎨</div>
+          <span>رنگ‌ها</span>
+        </article>
+        <article class="category-card">
+          <div class="icon">📓</div>
+          <span>دفاتر</span>
+        </article>
+        <article class="category-card">
+          <div class="icon">🧩</div>
+          <span>پازل و بازی</span>
+        </article>
+        <article class="category-card">
+          <div class="icon">✂️</div>
+          <span>ابزارها</span>
+        </article>
+        <article class="category-card">
+          <div class="icon">🎁</div>
+          <span>هدایا</span>
+        </article>
+      </section>
 
-const cards = document.querySelectorAll('.product-card, .category-card, .mini-card, .brand-box, .banner');
-cards.forEach((card) => {
-  card.addEventListener('mouseenter', () => {
-    card.style.transform = 'translateY(-8px)';
-  });
+      <section class="section-header">
+        <div>
+          <span class="section-kicker">پیشنهادهای ویژه</span>
+          <h2>محصولات امروز</h2>
+        </div>
+        <a href="#">مشاهده همه</a>
+      </section>
 
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
+      <section class="product-strip">
+        <article class="product-card">
+          <div class="card-badge">۳۵٪</div>
+          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=700&q=80" alt="ست رنگ" />
+          <h3>ست رنگ فلزی ۲۴ رنگ</h3>
+          <div class="price-row">
+            <span class="price">۲۲۰,۰۰۰</span>
+            <span class="old-price">۳۴۰,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۸</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
 
-const navItems = document.querySelectorAll('.nav-item');
-navItems.forEach((item) => {
-  item.addEventListener('mouseenter', () => {
-    item.style.transform = 'translateY(-1px)';
-  });
+        <article class="product-card">
+          <div class="card-badge">۲۵٪</div>
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=700&q=80" alt="دفتر" />
+          <h3>دفتر یادداشت شیک ۲۰۰ برگ</h3>
+          <div class="price-row">
+            <span class="price">۸۵,۰۰۰</span>
+            <span class="old-price">۱۱۳,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۷</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
 
-  item.addEventListener('mouseleave', () => {
-    item.style.transform = '';
-  });
-});
+        <article class="product-card">
+          <div class="card-badge">۴۰٪</div>
+          <img src="https://images.unsplash.com/photo-1555097462-c2dfc411351b?auto=format&fit=crop&w=700&q=80" alt="پازل" />
+          <h3>پازل ۱۰۰۰ تکه منظره</h3>
+          <div class="price-row">
+            <span class="price">۱۲۵,۰۰۰</span>
+            <span class="old-price">۲۰۸,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۹</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
 
-const topbar = document.querySelector('.topbar');
-if (topbar) {
-  topbar.animate(
-    [
-      { transform: 'translateY(-4px)', opacity: 0.9 },
-      { transform: 'translateY(0)', opacity: 1 }
-    ],
-    {
-      duration: 500,
-      easing: 'ease-out'
-    }
-  );
-}
+        <article class="product-card">
+          <div class="card-badge">۲۸٪</div>
+          <img src="https://images.unsplash.com/photo-1585394838944-aef87f16f6f1?auto=format&fit=crop&w=700&q=80" alt="قیچی" />
+          <h3>ست ابزار خلاق ۱۵ عنصره</h3>
+          <div class="price-row">
+            <span class="price">۱۵۰,۰۰۰</span>
+            <span class="old-price">۲۰۸,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۶</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
+      </section>
 
-const brandMark = document.querySelector('.brand-mark');
-if (brandMark) {
-  brandMark.addEventListener('mouseenter', () => brandMark.style.transform = 'rotate(10deg) scale(1.08)');
-  brandMark.addEventListener('mouseleave', () => brandMark.style.transform = '');
-}
+      <section class="promo-banners">
+        <div class="banner banner-pink">
+          <div>
+            <span>تخفیف بدون دردسر</span>
+            <h3>مجموعه جدید لوازم</h3>
+          </div>
+          <button class="btn-secondary">کلیک کنید</button>
+        </div>
+        <div class="banner banner-blue">
+          <div>
+            <span>خلاقیت شیک</span>
+            <h3>برندهای محبوب</h3>
+          </div>
+          <button class="btn-secondary">مشاهده</button>
+        </div>
+      </section>
 
-const searchBox = document.querySelector('.searchbox');
-if (searchBox) {
-  searchBox.addEventListener('focusin', () => {
-    searchBox.style.boxShadow = '0 0 0 5px rgba(248, 126, 189, 0.08)';
-  });
-  searchBox.addEventListener('focusout', () => {
-    searchBox.style.boxShadow = '';
-  });
-}
+      <section class="section-header">
+        <div>
+          <span class="section-kicker">برندهای برتر</span>
+          <h2>محبوب‌ترین برندها</h2>
+        </div>
+        <a href="#">همه برندها</a>
+      </section>
 
-const productImages = document.querySelectorAll('.product-card img');
-productImages.forEach((img) => {
-  img.addEventListener('mouseenter', () => {
-    img.style.filter = 'saturate(1.12) contrast(1.03)';
-  });
-  img.addEventListener('mouseleave', () => {
-    img.style.filter = '';
-  });
-});
+      <section class="brand-grid">
+        <div class="brand-box">Staedtler</div>
+        <div class="brand-box">Faber</div>
+        <div class="brand-box">Cra-Z</div>
+        <div class="brand-box">Ravensburger</div>
+        <div class="brand-box">Winsor</div>
+        <div class="brand-box">Art Box</div>
+      </section>
+
+      <section class="section-header">
+        <div>
+          <span class="section-kicker">پرطرفدار</span>
+          <h2>بیشترین فروش</h2>
+        </div>
+        <a href="#">بیشتر</a>
+      </section>
+
+      <section class="product-grid">
+        <article class="product-card">
+          <div class="card-badge">۳۲٪</div>
+          <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=700&q=80" alt="مدادرنگی" />
+          <h3>مدادرنگی ۶۴ رنگ پریمیوم</h3>
+          <div class="price-row">
+            <span class="price">۳۲۰,۰۰۰</span>
+            <span class="old-price">۴۷۰,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۸</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
+
+        <article class="product-card">
+          <div class="card-badge">۲۱٪</div>
+          <img src="https://images.unsplash.com/photo-1552038862-f72d989d6a97?auto=format&fit=crop&w=700&q=80" alt="مارکر" />
+          <h3>مارکرهای اسپیرت ۳۶ تایی</h3>
+          <div class="price-row">
+            <span class="price">۲۴۵,۰۰۰</span>
+            <span class="old-price">۳۱۰,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۹</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
+
+        <article class="product-card">
+          <div class="card-badge">۲۷٪</div>
+          <img src="https://images.unsplash.com/photo-1607345854620-e1d87f5520a8?auto=format&fit=crop&w=700&q=80" alt="سکریپ بوک" />
+          <h3>کیت scrapbooking کامل</h3>
+          <div class="price-row">
+            <span class="price">۲۸۰,۰۰۰</span>
+            <span class="old-price">۳۸۴,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۷</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
+
+        <article class="product-card">
+          <div class="card-badge">۳۸٪</div>
+          <img src="https://images.unsplash.com/photo-1554608532-fdf68c17ce8f?auto=format&fit=crop&w=700&q=80" alt="بازی" />
+          <h3>بازی فکری و استراتژی</h3>
+          <div class="price-row">
+            <span class="price">۱۷۰,۰۰۰</span>
+            <span class="old-price">۲۷۴,۰۰۰</span>
+          </div>
+          <div class="rating"><span>★★★★★</span><small>۴.۶</small></div>
+          <button class="btn-add-to-cart">افزودن به سبد</button>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h4>پیکسیا</h4>
+          <p>دنیای لوازم تحریر، سرگرمی و خلاقیتی برای همه سنین.</p>
+        </div>
+        <div>
+          <h5>خدمات مشتریان</h5>
+          <ul>
+            <li>پاسخ به سوالات</li>
+            <li>پیگیری سفارش</li>
+            <li>مرجوعی و گارانتی</li>
+          </ul>
+        </div>
+        <div>
+          <h5>نقشه سایت</h5>
+          <ul>
+            <li>درباره ما</li>
+            <li>تماس با ما</li>
+            <li>وبلاگ</li>
+          </ul>
+        </div>
+        <div>
+          <h5>اپلیکیشن</h5>
+          <div class="store-badges">
+            <span>App Store</span>
+            <span>Google Play</span>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© ۱۴۰۳ پیکسیا - کلیه حقوق محفوظ است</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
